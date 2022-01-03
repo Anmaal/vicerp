@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="pl" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <title>Loadingscreen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/index.css" />
+</head>
+<body style = "background-image: url(img/background-1.png);">
+
+<style>
+
+.parallax > use {
+  animation: move-forever 30s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+
+@keyframes move-forever {
+  0% {
+   transform: translate3d(-90px,0,0);
+  }
+  100% { 
+    transform: translate3d(86px,0,0);
+  }
+}
+
+@-webkit-keyframes move-forever {
+  0% {
+   transform: translate3d(-90px,0,0);
+  }
+  100% { 
+    transform: translate3d(86px,0,0);
+  }
+}
+
+#waves {
+  width: 100%;
+  height: 100px;
+
+  position: absolute;
+  top: 100%;
+  left: 50%;
+
+  margin-left: -50%;
+  margin-top: -100px;
+  z-index: 1;
+}
+
+#waves svg {
+  position:relative;
+
+  width: 100%;
+  height: 100%;
+
+  min-height:100px;
+  max-height:150px;
+}
+
+.crossfade > figure {
+  animation: imageAnimation 24s linear infinite;
+  backface-visibility: hidden;
+  background-size: cover;
+  background-position: center center;
+  color: transparent;
+  height: 100vh;
+  left: 0px;
+  opacity: 0;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.crossfade > figure:nth-child(1) {
+  background-image: url('img/background-1.png');
+}
+.crossfade > figure:nth-child(2) {
+  animation-delay: 6s;
+  background-image: url('img/background-2.jpg');
+}
+.crossfade > figure:nth-child(3) {
+  animation-delay: 12s;
+  background-image: url('img/background-3.jpg');
+}
+.crossfade > figure:nth-child(4) {
+  animation-delay: 18s;
+  background-image: url('img/background-4.jpg');
+}
+
+@keyframes imageAnimation {
+  0% {
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  16% {
+    opacity: 1;
+  }
+  24% {
+    animation-timing-function: ease-out;
+    opacity: 1
+  }
+  50% {
+    opacity: 0
+  }
+}
+
+@-webkit-keyframes imageAnimation {
+  0% {
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+  16% {
+    opacity: 1;
+  }
+  24% {
+    animation-timing-function: ease-out;
+    opacity: 1
+  }
+  50% {
+    opacity: 0
+  }
+}
+
+</style>
+
+  <div class="crossfade">
+    <figure></figure>
+    <figure></figure>
+    <figure></figure>
+    <figure></figure>
+  </div>
+
+  <div id="waves">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/>
+      </defs>
+
+      <g class="parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(26, 185, 213, 0.75)"/>
+        <use xlink:href="#gentle-wave" x="48" y="2" fill="rgba(233, 56, 206, 0.75)" />
+        <use xlink:href="#gentle-wave" x="48" y="4" fill="rgba(162, 255, 255, 0.75)"  />
+        <use xlink:href="#gentle-wave" x="48" y="6" fill="rgba(254, 148, 255, 0.75)" />
+      </g>
+    </svg>
+  </div>
+
+  <div id="intro">
+       <div>
+	   	   <img src='img/background-1.png' class="heartBeat animated infinite"style='width:1024px;height:512px;'>
+    </div>
+
+            <div style="color: #ffffff;">
+              <img src='Discord.png' style='width: 70px; height: 17px; margin-bottom: -3px;'> discord.gg/vice-rp 
+                <br><br>
+                Naciśnij <strong>Space</strong> by zatrzymać muzykę
+            </div>
+  </div>
+</div>
+
+
+
+<audio id="leson" src="audio.mp3" autoplay="true" hidden="true" loop="true">
+    <script>
+
+    var play = false;
+    var myAudio = document.getElementById("leson");
+    
+    myAudio.volume = 0.1;
+
+    function onKeyDown(event) {
+            switch (event.keyCode) {
+                case 32: //SpaceBar                    
+                    if (play) {
+                        myAudio.pause();
+                        play = false;
+                    } else {
+                        myAudio.play();
+                        play = true;
+                    }
+                    break;
+            }
+      return false;
+    }
+
+    window.addEventListener("keydown", onKeyDown, false);
+    </script>
+
+</body>
+</html>
